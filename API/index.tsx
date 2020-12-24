@@ -8,6 +8,6 @@ export default {
     getUsers: () =>
     instance({
         method: 'GET',
-        url: '/api/users?page=2'
+        url: '/api/users?page=1'
     })
 }
