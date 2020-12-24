@@ -20,16 +20,19 @@ export default function UserModal({ modalVisible, close, user }: UserModalProps)
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <View style={styles.contentContainer}>
-                        <Image
-                            style={styles.avatar}
-                            source={{ uri: user?.avatar, }}
-                        />
-                        <View>
+                        <View style={{ flex: 1, alignItems: 'center' }}>
+                            <Image
+                                style={styles.avatar}
+                                source={{ uri: user?.avatar, }}
+                            />
+                        </View>
+
+                        <View style={{ flex: 1 }}>
                             <Text style={styles.title}>First Name</Text>
                             <Text style={styles.title}>Last Name</Text>
                             <Text style={styles.title}>Email</Text>
                         </View>
-                        <View>
+                        <View style={{ flex: 1 }}>
                             <Text style={styles.value}>{user?.first_name}</Text>
                             <Text style={styles.value}>{user?.last_name}</Text>
                             <Text style={styles.value}>{user?.email}</Text>
@@ -38,7 +41,6 @@ export default function UserModal({ modalVisible, close, user }: UserModalProps)
                     <View style={styles.buttonContainer}>
                         <AppButton onPress={close} title="Close" />
                     </View>
-
                 </View>
 
             </View>
@@ -54,8 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.3)'
     },
     modalView: {
-        marginHorizontal: 20,
-        width: '100%',
+        width: '90%',
         backgroundColor: "white",
         paddingHorizontal: 20,
         paddingVertical: 40,
@@ -68,9 +69,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    contentContainer: { flexDirection: 'row' },
+    contentContainer: { flexDirection: 'row', },
     buttonContainer: { alignSelf: 'center', marginTop: 25 },
     title: { fontWeight: 'bold', marginRight: 20, paddingVertical: 5 },
-    value: { paddingVertical: 5 },
-    avatar: { height: 80, width: 80, borderRadius: 100, alignSelf: 'center', marginRight: 10 }
+    value: { paddingVertical: 5, },
+    avatar: { height: 80, width: 80, borderRadius: 100, alignSelf: 'center', marginRight: 10, marginTop: 2 }
 });
