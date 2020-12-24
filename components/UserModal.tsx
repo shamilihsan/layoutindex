@@ -17,8 +17,11 @@ export default function UserModal({ modalVisible, close, user }: UserModalProps)
             transparent
             visible={modalVisible}
         >
+
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
+                    <View style={styles.bottomTriangle} />
+                    <View style={styles.topTriangle} />
                     <View style={styles.contentContainer}>
                         <View style={{ flex: 1, alignItems: 'center' }}>
                             <Image
@@ -44,6 +47,7 @@ export default function UserModal({ modalVisible, close, user }: UserModalProps)
                 </View>
 
             </View>
+
         </Modal>
     )
 }
@@ -67,11 +71,46 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5,
+
     },
     contentContainer: { flexDirection: 'row', },
     buttonContainer: { alignSelf: 'center', marginTop: 25 },
     title: { fontWeight: 'bold', marginRight: 20, paddingVertical: 5 },
     value: { paddingVertical: 5, },
-    avatar: { height: 80, width: 80, borderRadius: 100, alignSelf: 'center', marginRight: 10, marginTop: 2 }
+    avatar: { height: 80, width: 80, borderRadius: 100, alignSelf: 'center', marginRight: 10, marginTop: 2 },
+    bottomTriangle: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderTopWidth: 0,
+        borderRightWidth: 0,
+        borderBottomWidth: 20,
+        borderLeftWidth: 20,
+        borderTopColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: 'rgba(0, 0, 0, 0.3)',
+        borderLeftColor: 'transparent',
+    },
+    topTriangle: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderTopWidth: 0,
+        borderRightWidth: 0,
+        borderBottomWidth: 20,
+        borderLeftWidth: 20,
+        borderTopColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: 'rgba(0,0,0,0.3)',
+        borderLeftColor: 'transparent',
+        transform: [{ rotate: '180deg' }],
+    },
 });
