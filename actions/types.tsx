@@ -9,7 +9,7 @@ export interface Action {
 
 export interface User {
     id: string,
-    email: string,
+    email: number,
     first_name: string,
     last_name: string,
     avatar: string,

@@ -1,23 +1,25 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { User } from '../actions/types';
 
 interface UserCardProps {
-    id: string,
-    name: string,
+    user: User,
+    onPress: Function,
 }
 
-export default function UserCard({ id, name }: UserCardProps) {
+export default function UserCard({ user, onPress }: UserCardProps) {
     return (
-        <View style={styles.cardContainer}>
+        <TouchableOpacity style={styles.cardContainer} onPress={() => { onPress(user) }}>
             <View style={styles.spacing}>
                 <Text style={styles.title}>ID</Text>
                 <Text style={[styles.spacingTop, styles.title]}>Name</Text>
             </View>
             <View>
-                <Text>{id}</Text>
-                <Text style={styles.spacingTop}>{name}</Text>
+                <Text>{user.id}</Text>
+                <Text style={styles.spacingTop}>{user.first_name}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

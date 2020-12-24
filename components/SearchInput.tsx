@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 10,
         color: 'black',
-        borderRadius: 5
+        borderRadius: 5,
+        paddingLeft: 20,
     },
     inputContainer: {
         flexDirection: 'row',
