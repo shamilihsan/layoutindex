@@ -6,3 +6,11 @@ export interface Action {
     type: string,
     payload: any
 }
+
+export interface User {
+    id: string,
+    email: string,
+    first_name: string,
+    last_name: string,
+    avatar: string,
+}

@@ -22,7 +22,7 @@ export default function UserCard({ id, name }: UserCardProps) {
 }
 
 const styles = StyleSheet.create({
-    cardContainer: { flexDirection: 'row', backgroundColor: 'white', paddingHorizontal: 20, paddingVertical: 15 },
+    cardContainer: { flexDirection: 'row', backgroundColor: 'white', paddingHorizontal: 20, paddingVertical: 15, borderRadius: 5 },
     spacing: { marginRight: 20 },
     spacingTop: { marginTop: 5 },
     title: { fontWeight: 'bold' }
