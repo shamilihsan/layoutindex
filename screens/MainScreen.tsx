@@ -45,21 +45,25 @@ export default function MainScreen() {
             {isLoading ?
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator color='#3a86a8' />
-                </View> :
-                <View style={styles.usersContainer}>
-                    <Text style={styles.title}>AVAILABLE USERS</Text>
-                    {users &&
-                        <FlatList
-                            style={styles.userList}
-                            data={filteredUsers}
-                            showsHorizontalScrollIndicator={false}
-                            ItemSeparatorComponent={() => <View style={styles.itemSeperator}></View>}
-                            renderItem={({ item }) =>
-                                <UserCard user={item} onPress={(user: User) => selectUser(user)} />}
-                            keyExtractor={item => item.id.toString()}
-                        />
-                    }
-                </View>
+                </View> : !isError ?
+                    <View style={styles.usersContainer}>
+                        <Text style={styles.title}>AVAILABLE USERS</Text>
+                        {users &&
+                            <FlatList
+                                style={styles.userList}
+                                data={filteredUsers}
+                                showsHorizontalScrollIndicator={false}
+                                ItemSeparatorComponent={() => <View style={styles.itemSeperator}></View>}
+                                renderItem={({ item }) =>
+                                    <UserCard user={item} onPress={(user: User) => selectUser(user)} />}
+                                keyExtractor={item => item.id.toString()}
+                            />
+                        }
+                    </View>
+                    :
+                    <View style={styles.loadingContainer}>
+                        <Text style={styles.error}>Something went wrong. Try again later</Text>
+                    </View>
             }
 
         </View>
@@ -96,4 +100,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5
     },
+    error: {
+        color: 'red'
+    }
 });
