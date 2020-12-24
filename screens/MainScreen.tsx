@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StatusBar, StyleSheet, FlatList, Modal } from 'react-native';
+import { View, Text, StatusBar, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { fetchUsers } from '../thunks/UsersThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import UserCard from '../components/UserCard';
@@ -12,6 +12,7 @@ export default function MainScreen() {
     const users: User[] = useSelector(state => state.users.users)
     const isSuccess: boolean = useSelector(state => state.users.isSuccess)
     const isError: boolean = useSelector(state => state.users.isError)
+    const isLoading: boolean = useSelector(state => state.users.isLoading);
 
     const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
     const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -41,20 +42,26 @@ export default function MainScreen() {
             <UserModal modalVisible={modalVisible} user={selectedUser} close={() => setModalVisible(false)} />
 
             <SearchInput onChange={onChange} />
-            <View style={styles.usersContainer}>
-                <Text style={styles.title}>AVAILABLE USERS</Text>
-                {users &&
-                    <FlatList
-                        style={styles.userList}
-                        data={filteredUsers}
-                        showsHorizontalScrollIndicator={false}
-                        ItemSeparatorComponent={() => <View style={styles.itemSeperator}></View>}
-                        renderItem={({ item }) =>
-                            <UserCard user={item} onPress={(user: User) => selectUser(user)} />}
-                        keyExtractor={item => item.id.toString()}
-                    />
-                }
-            </View>
+            {isLoading ?
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator color='#3a86a8' />
+                </View> :
+                <View style={styles.usersContainer}>
+                    <Text style={styles.title}>AVAILABLE USERS</Text>
+                    {users &&
+                        <FlatList
+                            style={styles.userList}
+                            data={filteredUsers}
+                            showsHorizontalScrollIndicator={false}
+                            ItemSeparatorComponent={() => <View style={styles.itemSeperator}></View>}
+                            renderItem={({ item }) =>
+                                <UserCard user={item} onPress={(user: User) => selectUser(user)} />}
+                            keyExtractor={item => item.id.toString()}
+                        />
+                    }
+                </View>
+            }
+
         </View>
     )
 }
@@ -70,6 +77,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: 'rgba(0, 0, 0, 0.3)'
+    },
+    loadingContainer: {
+        justifyContent: 'center', alignItems: 'center', flex: 1
     },
     modalView: {
         marginHorizontal: 20,

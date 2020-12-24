@@ -9,5 +9,11 @@ export default {
     instance({
         method: 'GET',
         url: '/api/users?page=1'
+    }),
+
+    getUser: (id: number) =>
+    instance({
+        method: 'GET',
+        url: `/api/users/${id}`
     })
 }
